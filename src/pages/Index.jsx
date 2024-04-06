@@ -74,7 +74,7 @@ const Index = () => {
         <Heading as="h2" size="lg" mb={4}>
           Revenue Growth
         </Heading>
-        <LineChart shifts={filteredShifts} />
+        <LineChart shifts={filteredShifts} dataKeys={["drivers", "bookings", "revenue"]} />
       </Box>
     </Box>
   );
