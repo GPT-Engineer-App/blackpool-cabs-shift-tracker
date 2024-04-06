@@ -14,13 +14,15 @@ const Index = () => {
   const [endDate, setEndDate] = useState("");
 
   const handleAddShift = () => {
-    const newShift = {
-      date,
-      drivers: parseInt(drivers),
-      bookings: parseInt(bookings),
-      revenue: parseFloat(revenue),
-    };
-    setShifts([...shifts, newShift]);
+    if (date && drivers && bookings && revenue) {
+      const newShift = {
+        date,
+        drivers: parseInt(drivers, 10),
+        bookings: parseInt(bookings, 10),
+        revenue: parseFloat(revenue).toFixed(2),
+      };
+      setShifts([...shifts, newShift]);
+    }
     setDate("");
     setDrivers("");
     setBookings("");
