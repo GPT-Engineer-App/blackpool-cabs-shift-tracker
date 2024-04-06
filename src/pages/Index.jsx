@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Box, Heading, Text, VStack, HStack, Input, Button, Table, Thead, Tbody, Tr, Th, Td, Select } from "@chakra-ui/react";
+import { Box, Heading, Text, VStack, HStack, Input, Button, Table, Thead, Tbody, Tr, Th, Td, Select, DatePicker } from "@chakra-ui/react";
 
 import { FaPlus, FaChartLine } from "react-icons/fa";
 
@@ -36,19 +36,21 @@ const Index = () => {
 
       <VStack spacing={4} align="stretch">
         <HStack spacing={4}>
-          <Input placeholder="Date (YYYY-MM-DD)" value={date} onChange={(e) => setDate(e.target.value)} />
+          <Input type="datetime-local" value={date} onChange={(e) => setDate(e.target.value)} />
           <Input placeholder="Number of Drivers" value={drivers} onChange={(e) => setDrivers(e.target.value)} />
           <Input placeholder="Number of Bookings" value={bookings} onChange={(e) => setBookings(e.target.value)} />
           <Input placeholder="Revenue" value={revenue} onChange={(e) => setRevenue(e.target.value)} />
-          <Button leftIcon={<FaPlus />} colorScheme="blue" onClick={handleAddShift}>
+          <Button leftIcon={<FaPlus />} colorScheme="blue" onClick={handleAddShift} width="100%">
             Add Shift
           </Button>
         </HStack>
 
         <HStack spacing={4}>
-          <Input placeholder="Start Date (YYYY-MM-DD)" value={startDate} onChange={(e) => setStartDate(e.target.value)} />
-          <Input placeholder="End Date (YYYY-MM-DD)" value={endDate} onChange={(e) => setEndDate(e.target.value)} />
+          <Input type="date" value={startDate} onChange={(e) => setStartDate(e.target.value)} />
+          <Input type="date" value={endDate} onChange={(e) => setEndDate(e.target.value)} />
         </HStack>
+
+        
 
         <Box overflowX="auto">
           <Table variant="simple">
