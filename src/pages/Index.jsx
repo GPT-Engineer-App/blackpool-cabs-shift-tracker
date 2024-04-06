@@ -14,15 +14,13 @@ const Index = () => {
   const [endDate, setEndDate] = useState("");
 
   const handleAddShift = () => {
-    if (date && drivers && bookings && revenue) {
-      const newShift = {
-        date,
-        drivers: parseInt(drivers, 10),
-        bookings: parseInt(bookings, 10),
-        revenue: parseFloat(revenue).toFixed(2),
-      };
-      setShifts([...shifts, newShift]);
-    }
+    const newShift = {
+      date,
+      drivers: parseInt(drivers),
+      bookings: parseInt(bookings),
+      revenue: parseFloat(revenue),
+    };
+    setShifts([...shifts, newShift]);
     setDate("");
     setDrivers("");
     setBookings("");
@@ -76,7 +74,7 @@ const Index = () => {
         <Heading as="h2" size="lg" mb={4}>
           Revenue Growth
         </Heading>
-        <LineChart shifts={filteredShifts} dataKeys={["drivers", "bookings", "revenue"]} />
+        <LineChart shifts={filteredShifts} />
       </Box>
     </Box>
   );
