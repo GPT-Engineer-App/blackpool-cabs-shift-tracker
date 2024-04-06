@@ -37,7 +37,7 @@ const Index = () => {
 
       <VStack spacing={4} align="stretch">
         <HStack spacing={4}>
-          <Input type="datetime-local" value={date} onChange={(e) => setDate(e.target.value)} />
+          <Input type="datetime-local" value={date} onChange={(e) => setDate(e.target.value)} step={3600} />
           <Input placeholder="Number of Drivers" value={drivers} onChange={(e) => setDrivers(e.target.value)} />
           <Input placeholder="Number of Bookings" value={bookings} onChange={(e) => setBookings(e.target.value)} />
           <Input placeholder="Revenue" value={revenue} onChange={(e) => setRevenue(e.target.value)} />

@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Flex, Text } from "@chakra-ui/react";
+import { Box, Text } from "@chakra-ui/react";
 
 const LineChart = ({ shifts }) => {
   if (shifts.length === 0) {
@@ -7,19 +7,39 @@ const LineChart = ({ shifts }) => {
   }
 
   const maxRevenue = Math.max(...shifts.map((shift) => shift.revenue));
+  const minRevenue = Math.min(...shifts.map((shift) => shift.revenue));
+  const revenueRange = maxRevenue - minRevenue;
+
   return (
-    <Box borderWidth="1px" borderRadius="lg" p={4}>
-      {shifts.map((shift, index) => (
-        <Flex key={index} justify="space-between" align="center" my={2}>
-          <Text width="50px">{shift.date}</Text>
-          <Box flex="1" height="10px" bg="green.200" mx={2}>
-            <Box width={`${(shift.revenue / maxRevenue) * 100}%`} height="10px" bg="green.500" />
-          </Box>
-          <Text width="100px" textAlign="right">
-            £{shift.revenue.toFixed(2)}
+    <Box position="relative" width="100%" height="200px">
+      <Box position="absolute" top={0} left={0} right={0} bottom={0}>
+        <svg viewBox="0 0 100 100" preserveAspectRatio="none" width="100%" height="100%">
+          {shifts.map((shift, index) => {
+            const x = (index / (shifts.length - 1)) * 100;
+            const y = 100 - ((shift.revenue - minRevenue) / revenueRange) * 100;
+            return <circle key={index} cx={x} cy={y} r="2" fill="green" />;
+          })}
+          <polyline
+            points={shifts
+              .map((shift, index) => {
+                const x = (index / (shifts.length - 1)) * 100;
+                const y = 100 - ((shift.revenue - minRevenue) / revenueRange) * 100;
+                return `${x},${y}`;
+              })
+              .join(" ")}
+            fill="none"
+            stroke="green"
+            strokeWidth="2"
+          />
+        </svg>
+      </Box>
+      <Box position="absolute" top={0} left={0} right={0} bottom={0} pointerEvents="none">
+        {shifts.map((shift, index) => (
+          <Text key={index} position="absolute" left={`${(index / (shifts.length - 1)) * 100}%`} bottom="-20px" transform="translateX(-50%)" fontSize="12px">
+            {new Date(shift.date).toLocaleDateString()}
           </Text>
-        </Flex>
-      ))}
+        ))}
+      </Box>
     </Box>
   );
 };
