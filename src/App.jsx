@@ -1,13 +1,13 @@
-import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
-import Index from "./pages/Index.jsx";
+import { Box, Text } from "@chakra-ui/react";
 
 function App() {
   return (
-    <Router>
-      <Routes>
-        <Route exact path="/" element={<Index />} />
-      </Routes>
-    </Router>
+    <Box mt={8}>
+      <Text fontSize="xl" fontWeight="bold" mb={4}>
+        Revenue Growth
+      </Text>
+      <Text>Coming soon!</Text>
+    </Box>
   );
 }
 

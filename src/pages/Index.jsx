@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Box, Heading, Text, VStack, HStack, Input, Button, Table, Thead, Tbody, Tr, Th, Td, Select, DatePicker } from "@chakra-ui/react";
+import LineChart from "../components/LineChart";
 
 import { FaPlus, FaChartLine } from "react-icons/fa";
 
@@ -45,13 +46,6 @@ const Index = () => {
           </Button>
         </HStack>
 
-        <HStack spacing={4}>
-          <Input type="date" value={startDate} onChange={(e) => setStartDate(e.target.value)} />
-          <Input type="date" value={endDate} onChange={(e) => setEndDate(e.target.value)} />
-        </HStack>
-
-        
-
         <Box overflowX="auto">
           <Table variant="simple">
             <Thead>
@@ -75,6 +69,13 @@ const Index = () => {
           </Table>
         </Box>
       </VStack>
+
+      <Box mt={8}>
+        <Heading as="h2" size="lg" mb={4}>
+          Revenue Growth
+        </Heading>
+        <LineChart shifts={filteredShifts} />
+      </Box>
     </Box>
   );
 };
